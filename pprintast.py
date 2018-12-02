@@ -68,6 +68,8 @@ def cli():
     import argparse
     import sys
 
+    # TODO: add -c, --command option
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "infile", nargs="?", type=argparse.FileType("r"), default=sys.stdin
