@@ -12,7 +12,7 @@ $ pip install pprintast
 
 ## Usage
 
-```bash
+```text
 
 usage: pprintast.py [-h] [-v] [-c cmd] [file]
 
