@@ -26,7 +26,8 @@ pprintast "./path/to/script.py"
 ```python
 
 # 1. import the "pprintast" function.
-from pprintast import pprintast as ppast
+from pprintast import pprintast as ppast 
+# OR from pprintast import ppast
 
 # 2. retty print AST from "string".
 exp = "lambda a: a**2"
