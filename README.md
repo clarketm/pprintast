@@ -31,13 +31,13 @@ optional arguments:
 
 ### Script
 
-Pretty print AST from "file" using the `pprintast` CLI.
+Pretty print AST from a *file* using the `pprintast` CLI.
 
 ```bash
 $ pprintast "./path/to/script.py"
 ```
 
-Pretty print AST from "string" using the `pprintast` CLI.
+Pretty print AST from a *string* using the `pprintast` CLI.
 
 ```bash
 $ pprintast -c "lambda a: a**2"
@@ -45,14 +45,14 @@ $ pprintast -c "lambda a: a**2"
 
 ### Module
 
-Pretty print AST from "string" using the `pprintast` module.
+Pretty print AST from a *string* using the `pprintast` module.
 
 ```python
 
 # 1. import the "pprintast" function.
 from pprintast import pprintast as ppast # OR: from pprintast import ppast
 
-# 2. pretty print AST from "string".
+# 2. pretty print AST from a "string".
 exp = "lambda a: a**2"
 
 ppast(exp)
