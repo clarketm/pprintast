@@ -29,7 +29,7 @@ pprintast "./path/to/script.py"
 from pprintast import pprintast as ppast 
 # OR from pprintast import ppast
 
-# 2. retty print AST from "string".
+# 2. pretty print AST from "string".
 exp = "lambda a: a**2"
 
 ppast(exp)
