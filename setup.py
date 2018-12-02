@@ -1,13 +1,13 @@
 import setuptools
 
-from pprintast import VERSION
+from pprintast import __VERSION__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="pprintast",
-    version=VERSION,
+    version=__VERSION__,
     author="Travis Clarke, Alex Leone",
     author_email="travis.m.clarke@gmail.com, acleone@gmail.com",
     description="A AST pretty printer for python.",

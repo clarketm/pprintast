@@ -12,22 +12,45 @@ $ pip install pprintast
 
 ## Usage
 
+```bash
+
+usage: pprintast.py [-h] [-v] [-c cmd] [file]
+
+A pretty-printing dump function for the ast module. The code was copied from
+the ast.dump function and modified slightly to pretty-print.
+
+positional arguments:
+  file                   program(s) passed in as file
+
+optional arguments:
+  -h, --help             show this help message and exit
+  -v, --version          show program's version number and exit
+  -c cmd, --command cmd  program passed in as string
+
+```
+
 ### Script
 
-```python
+Pretty print AST from "file" using the `pprintast` CLI.
 
-# 1. pretty print AST from "file".
-pprintast "./path/to/script.py"
+```bash
+$ pprintast "./path/to/script.py"
+```
 
+Pretty print AST from "string" using the `pprintast` CLI.
+
+```bash
+$ pprintast -c "lambda a: a**2"
 ```
 
 ### Module
 
+Pretty print AST from "string" using the `pprintast` module.
+
 ```python
 
 # 1. import the "pprintast" function.
-from pprintast import pprintast as ppast 
-# OR from pprintast import ppast
+from pprintast import pprintast as ppast # OR: from pprintast import ppast
 
 # 2. pretty print AST from "string".
 exp = "lambda a: a**2"

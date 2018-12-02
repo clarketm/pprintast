@@ -5,7 +5,7 @@ the ast.dump function and modified slightly to pretty-print.
 
 from ast import *
 
-VERSION = "0.0.1"
+__VERSION__ = "0.0.2"
 
 
 def dump(node, annotate_fields=True, include_attributes=False, indent="  "):
@@ -68,14 +68,26 @@ def cli():
     import argparse
     import sys
 
-    # TODO: add -c, --command option
-
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "infile", nargs="?", type=argparse.FileType("r"), default=sys.stdin
+        "-v", "--version", action="version", version=f"%(prog)s {__VERSION__}"
+    )
+    parser.add_argument(
+        "-c", "--command", type=str, metavar="cmd", help="program passed in as string"
+    )
+    parser.add_argument(
+        "file",
+        nargs="?",
+        type=argparse.FileType("r"),
+        help="program(s) passed in as file",
+        default=sys.stdin,
     )
     args = parser.parse_args()
-    pprintast(args.infile.read(), filename=args.infile.name, include_attributes=True)
+
+    if args.command:
+        pprintast(args.command, include_attributes=True)
+    else:
+        pprintast(args.file.read(), filename=args.file.name, include_attributes=True)
 
 
 if __name__ == "__main__":
