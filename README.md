@@ -14,18 +14,21 @@ $ pip install pprintast
 
 ```text
 
-usage: pprintast.py [-h] [-v] [-c cmd] [file]
+usage: pprintast.py [-h] [-a] [-c cmd] [-m mode] [-t] [-v] [file]
 
-A pretty-printing dump function for the ast module. The code was copied from
-the ast.dump function and modified slightly to pretty-print.
+A pretty-printing dump function for the ast module. The code was copied from the ast.dump function
+and modified slightly to pretty-print.
 
 positional arguments:
   file                   program(s) passed in as file
 
 optional arguments:
   -h, --help             show this help message and exit
-  -v, --version          show program's version number and exit
+  -a, --attributes       include attributes such as line numbers and column offsets
   -c cmd, --command cmd  program passed in as string
+  -m mode, --mode mode   compilation mode (choices: exec, eval, single) (default: exec)
+  -t, --terse            terse output by disabling field annotations
+  -v, --version          show program's version number and exit
 
 ```
 
