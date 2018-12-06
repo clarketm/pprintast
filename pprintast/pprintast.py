@@ -4,24 +4,39 @@ the ast.dump function and modified slightly to pretty-print.
 """
 
 from ast import *
+from enum import Enum
 
 __VERSION__ = "0.0.2"
 
 
-def dump(node, annotate_fields=True, include_attributes=False, indent="  "):
+class StringEnum(str, Enum):
+    def __str__(self):
+        return self.value
+
+    def __repr__(self):
+        return self.value
+
+
+class Mode(StringEnum):
+    EXEC = "exec"
+    EVAL = "eval"
+    SINGLE = "single"
+
+
+def _dump(node, terse: bool, attributes: bool, indent: str):
     """
     Return a formatted dump of the tree in *node*.  This is mainly useful for
     debugging purposes.  The returned string will show the names and the values
     for fields.  This makes the code impossible to evaluate, so if evaluation is
-    wanted *annotate_fields* must be set to False.  Attributes such as line
+    wanted *terse* must be set to True.  Attributes such as line
     numbers and column offsets are not dumped by default.  If this is wanted,
-    *include_attributes* can be set to True.
+    *attributes* can be set to True.
     """
 
     def _format(node, level=0):
         if isinstance(node, AST):
             fields = [(a, _format(b, level)) for a, b in iter_fields(node)]
-            if include_attributes and node._attributes:
+            if attributes and node._attributes:
                 fields.extend(
                     [(a, _format(getattr(node, a), level)) for a in node._attributes]
                 )
@@ -31,7 +46,7 @@ def dump(node, annotate_fields=True, include_attributes=False, indent="  "):
                     "(",
                     ", ".join(
                         ("%s=%s" % field for field in fields)
-                        if annotate_fields
+                        if not terse
                         else (b for a, b in fields)
                     ),
                     ")",
@@ -54,10 +69,17 @@ def dump(node, annotate_fields=True, include_attributes=False, indent="  "):
     return _format(node)
 
 
-def pprintast(code, filename="<string>", mode="exec", **kwargs):
+def pprintast(
+    source: str,
+    filename: str = "<ast>",
+    mode: str = Mode.EXEC,
+    terse: bool = False,
+    attributes: bool = False,
+    indent: str = "  ",
+):
     """Parse some code from a string and pretty-print it."""
-    node = parse(code, mode=mode)  # An ode to the code
-    print(dump(node, **kwargs))
+    node: AST = parse(source, filename=filename, mode=mode)
+    print(_dump(node, terse, attributes, indent))
 
 
 # Alias (i.e. shortname)
@@ -68,12 +90,38 @@ def cli():
     import argparse
     import sys
 
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=lambda prog: argparse.HelpFormatter(
+            prog, max_help_position=35, width=100
+        ),
+    )
     parser.add_argument(
-        "-v", "--version", action="version", version=f"%(prog)s {__VERSION__}"
+        "-a",
+        "--attributes",
+        help="include attributes such as line numbers and column offsets",
+        action="store_true",
     )
     parser.add_argument(
         "-c", "--command", type=str, metavar="cmd", help="program passed in as string"
+    )
+    parser.add_argument(
+        "-m",
+        "--mode",
+        type=Mode,
+        metavar="mode",
+        default=Mode.EXEC,
+        choices=list(Mode),
+        help="compilation mode (choices: %(choices)s) (default: %(default)s)",
+    )
+    parser.add_argument(
+        "-t",
+        "--terse",
+        help="terse output by disabling field annotations",
+        action="store_true",
+    )
+    parser.add_argument(
+        "-v", "--version", action="version", version=f"%(prog)s {__VERSION__}"
     )
     parser.add_argument(
         "file",
@@ -85,9 +133,17 @@ def cli():
     args = parser.parse_args()
 
     if args.command:
-        pprintast(args.command, include_attributes=True)
+        pprintast(
+            args.command, mode=args.mode, terse=args.terse, attributes=args.attributes
+        )
     else:
-        pprintast(args.file.read(), filename=args.file.name, include_attributes=True)
+        pprintast(
+            args.file.read(),
+            filename=args.file.name,
+            mode=args.mode,
+            terse=args.terse,
+            attributes=args.attributes,
+        )
 
 
 if __name__ == "__main__":
