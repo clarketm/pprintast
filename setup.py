@@ -1,6 +1,6 @@
 import setuptools
 
-from pprintast import __VERSION__
+from pprintast.pprintast import __VERSION__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -16,7 +16,7 @@ setuptools.setup(
     url="https://github.com/clarketm/pprintast",
     packages=setuptools.find_packages(),
     py_modules=["pprintast"],
-    entry_points={"console_scripts": ["pprintast=pprintast:cli"]},
+    entry_points={"console_scripts": ["pprintast=pprintast.pprintast:cli"]},
     classifiers=[
         "Intended Audience :: Developers",
         "Natural Language :: English",
