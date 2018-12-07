@@ -6,7 +6,7 @@ the ast.dump function and modified slightly to pretty-print.
 from ast import *
 from enum import Enum
 
-__VERSION__ = "1.1.0"
+__VERSION__ = "1.1.1"
 
 
 class StringEnum(str, Enum):
@@ -127,7 +127,7 @@ def cli():
         "file",
         nargs="?",
         type=argparse.FileType("r"),
-        help="program(s) passed in as file",
+        help="program passed in as file",
         default=sys.stdin,
     )
     args = parser.parse_args()

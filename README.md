@@ -21,7 +21,7 @@ A pretty-printing dump function for the ast module. The code was copied from the
 and modified slightly to pretty-print.
 
 positional arguments:
-  file                   program(s) passed in as file
+  file                   program passed in as file
 
 optional arguments:
   -h, --help             show this help message and exit
