@@ -1,8 +1,8 @@
-import setuptools
+import setuptools, os
 
 from pprintast.pprintast import __VERSION__
 
-with open("README.md", "r") as fh:
+with open(f"{os.path.abspath(os.path.dirname(__file__))}/README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
