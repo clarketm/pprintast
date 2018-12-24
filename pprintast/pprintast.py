@@ -6,7 +6,7 @@ the ast.dump function and modified slightly to pretty-print.
 from ast import *
 from enum import Enum
 
-__VERSION__ = "1.1.1"
+__VERSION__ = "1.1.2"
 
 
 class StringEnum(str, Enum):
