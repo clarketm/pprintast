@@ -1,9 +1,11 @@
-# [pprintast](https://pypi.org/project/pprintast/)
+# [pprintast](https://pprintast.readthedocs.io/en/latest/)
 
 [![PyPi release](https://img.shields.io/pypi/v/pprintast.svg)](https://pypi.org/project/pprintast/)
 [![Downloads](https://pepy.tech/badge/pprintast)](https://pepy.tech/project/pprintast)
 
 An AST (abstract syntax tree) pretty printer for Python 🐍.
+
+[Check out the pprintast docs](https://pprintast.readthedocs.io/en/latest/)
 
 ## Installation
 
