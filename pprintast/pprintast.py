@@ -5,8 +5,7 @@ the ast.dump function and modified slightly to pretty-print.
 
 from ast import *
 from enum import Enum
-
-__VERSION__ = "1.1.2"
+from pprintast import __version__
 
 
 class StringEnum(str, Enum):
@@ -121,7 +120,7 @@ def cli():
         action="store_true",
     )
     parser.add_argument(
-        "-v", "--version", action="version", version=f"%(prog)s {__VERSION__}"
+        "-v", "--version", action="version", version=f"%(prog)s {__version__}"
     )
     parser.add_argument(
         "file",
