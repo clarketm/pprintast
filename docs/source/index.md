@@ -12,6 +12,9 @@ Version |version|
 
 .. image:: https://img.shields.io/pypi/v/pprintast.svg
     :target: https://pypi.org/project/pprintast/
+    
+.. image:: https://img.shields.io/pypi/pyversions/pprintast.svg
+    :target: https://pypi.org/project/pprintast/
 
 .. image:: https://pepy.tech/badge/pprintast
     :target: https://pepy.tech/project/pprintast

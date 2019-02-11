@@ -1,6 +1,7 @@
 # [pprintast](https://pprintast.readthedocs.io/en/latest/)
 
 [![PyPi release](https://img.shields.io/pypi/v/pprintast.svg)](https://pypi.org/project/pprintast/)
+[![PyPi versions](https://img.shields.io/pypi/pyversions/pprintast.svg)](https://pypi.org/project/pprintast/)
 [![Downloads](https://pepy.tech/badge/pprintast)](https://pepy.tech/project/pprintast)
 [![Documentation Status](https://readthedocs.org/projects/pprintast/badge/?version=latest)](https://pprintast.readthedocs.io/en/latest/?badge=latest)
 
